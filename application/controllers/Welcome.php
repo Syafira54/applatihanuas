@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 use Jenssegers\Blade\Blade;
@@ -24,14 +23,12 @@ class Welcome extends CI_Controller
      * @see https://codeigniter.com/userguide3/general/urls.html
      */
     private $_blade;
-
     // create construct
     public function __construct()
     {
         parent::__construct();
         $this->_blade = new Blade(VIEWPATH, APPPATH . 'cache');
     }
-
     private function _createView($view, $data)
     {
         echo $this->_blade->make($view, $data)->render();
@@ -47,14 +44,14 @@ class Welcome extends CI_Controller
     {
         $username = $this->input->post('username');
         $artikel = $this->input->post('artikel');
-        
+
         $post = new Post();
         $post->user_id = $username;
         $post->artikel = $artikel;
         $post->save();
-        
+
         redirect('welcome/tampil', []);
-        
+
         $this->_createView('simpan', []);
     }
 
@@ -62,7 +59,7 @@ class Welcome extends CI_Controller
     {
         $post = Post::find($id);
         $post->delete();
-        
+
 
         redirect ('welcome/tampil');
     }
