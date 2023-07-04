@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 use Jenssegers\Blade\Blade;
@@ -23,12 +24,14 @@ class Welcome extends CI_Controller
      * @see https://codeigniter.com/userguide3/general/urls.html
      */
     private $_blade;
+
     // create construct
     public function __construct()
     {
         parent::__construct();
         $this->_blade = new Blade(VIEWPATH, APPPATH . 'cache');
     }
+
     private function _createView($view, $data)
     {
         echo $this->_blade->make($view, $data)->render();
@@ -42,24 +45,23 @@ class Welcome extends CI_Controller
 
     public function simpan()
     {
-        $username = $this->input->post('username');
-        $artikel = $this->input->post('artikel');
+        if ($this->input->post()){
+            $username = $this->input->post('username');
+            $artikel = $this->input->post('artikel');
 
-        $post = new Post();
-        $post->user_id = $username;
-        $post->artikel = $artikel;
-        $post->save();
+            $post = new Post();
 
-        redirect('welcome/tampil', []);
-
-        $this->_createView('simpan', []);
+            $post->user_id = $username;
+            $post->artikel = $artikel;
+            $post->save();
+        }
+        redirect('welcome/index', []);
     }
 
     public function hapus($id)
     {
         $post = Post::find($id);
         $post->delete();
-
 
         redirect ('welcome/tampil');
     }
@@ -68,6 +70,7 @@ class Welcome extends CI_Controller
     {
         $avail_user = User::all();
         $post = Post::find($id);
+
         $this->_createView('update', ['post'=>$post, 'avail_user' => $avail_user]);
     }
 
@@ -77,11 +80,15 @@ class Welcome extends CI_Controller
         $post->user_id = $this->input->post('username');
         $post->artikel = $this->input->post('artikel');
         $post->save();
+
+        redirect('Welcome/tampil');
     }
 
     public function tampil()
     {
         $post_list = Post::all();
+
         $this->_createView('tampil', ['post_list' => $post_list]);
     }
+    
 }
