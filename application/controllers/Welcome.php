@@ -45,7 +45,6 @@ class Welcome extends CI_Controller
 
     public function simpan()
     {
-        if ($this->input->post()){
             $username = $this->input->post('username');
             $artikel = $this->input->post('artikel');
 
@@ -54,7 +53,7 @@ class Welcome extends CI_Controller
             $post->user_id = $username;
             $post->artikel = $artikel;
             $post->save();
-        }
+
         redirect('welcome/index', []);
     }
 
@@ -90,5 +89,5 @@ class Welcome extends CI_Controller
 
         $this->_createView('tampil', ['post_list' => $post_list]);
     }
-    
+
 }
