@@ -1,14 +1,10 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
-
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
-
 $dotenv = \Dotenv\Dotenv::createImmutable(FCPATH);
 $dotenv->load();
-
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -80,7 +76,6 @@ $dotenv->load();
 */
 $active_group = 'default';
 $query_builder = true;
-
 $db['default'] = [
     'dsn'	=> '',
     'hostname' => $_ENV['DB_HOST'],
@@ -102,9 +97,7 @@ $db['default'] = [
     'failover' => [],
     'save_queries' => true,
 ];
-
 $capsule = new Capsule;
-
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => $_ENV['DB_HOST'],
