@@ -89,4 +89,5 @@ class Welcome extends CI_Controller
 
         $this->_createView('tampil', ['post_list' => $post_list]);
     }
+    
 }
