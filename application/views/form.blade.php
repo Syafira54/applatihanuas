@@ -11,8 +11,9 @@
     <title>Starter Template · Bootstrap v5.3</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
+
 <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -30,16 +31,14 @@
 
     <div class="row g-5">
       <div class="col-md-6">
-        <h2 class="text-body-emphasis">Form Update Artikel</h2>
         <h2 class="text-body-emphasis">Form Input Artikel</h2>
         <p>Masukan data yang akan di proses</p>
-        <form>
-        <form method="post" action="{{ site_url('welcome/simpan') }}">
+        <form method="post" action="{{ site_url('Welcome/simpan') }}">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
-                <select class = "form-control" name="user_id" id="">
-                  @foreach ($user_list as $user)
-                    <option value="{{ $user->id }}">{{ $user->username }}</option>
+                <select class="form-control" name="username">
+                  @foreach($avail_user as $user)
+                  <option value="{{ $user->id }}">{{ $user->username }}</option>
                   @endforeach
                 </select>
             </div>
@@ -48,7 +47,7 @@
                 <textarea class="form-control" id="nama" name="artikel" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-secondary" href="{{ site_url('welcome/tampil') }}">Tampil</a>
+            <a class="btn btn-secondary" href="{{site_url('Welcome/tampil')}}">Tampil</a>
         </form>
       </div>
     </div>
